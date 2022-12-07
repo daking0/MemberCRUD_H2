@@ -14,16 +14,19 @@ import java.util.List;
 public class MemberController {
     private final MemberService memberService;
 
+    //생성자 연결
     @Autowired
     public MemberController(MemberService memberService){
         this.memberService = memberService;
     }
 
+    //회원등록 버튼 누를시 가입 form으로 이동
     @GetMapping("/members/new")
     public String createForm(){
         return "members/createMemberForm";
     }
 
+    //회원가입
     @PostMapping("/members/new")
     public String create(MemberForm form){
         Member member = new Member();

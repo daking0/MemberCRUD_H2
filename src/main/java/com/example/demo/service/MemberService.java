@@ -10,10 +10,11 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.Optional;
 
-@Transactional
+@Transactional //JPA 사용하기 위해서 필요(JPA를 통한 데이터변경은 모두 트랜잭션 안에서 실행)
 public class MemberService {
     private final MemberRepository memberRepository;
 
+    // 회원 가입
     @Autowired
     public MemberService(MemberRepository memberRepository){
         this.memberRepository = memberRepository;
@@ -24,6 +25,7 @@ public class MemberService {
         return member.getId();
     }
 
+    //중복회원 검증
     private void validateDuplicateMember(Member member){
         memberRepository.findByName(member.getName())
                 .ifPresent(m -> {

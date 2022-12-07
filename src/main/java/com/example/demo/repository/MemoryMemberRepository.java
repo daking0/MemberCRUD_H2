@@ -8,8 +8,11 @@ import java.util.*;
 @Repository
 public class MemoryMemberRepository implements MemberRepository{
 
+    //DB연결 하기 전에 임시 저장소 사용
     private static Map<Long,Member> store = new HashMap<>();
     private static long sequence = 0L;
+
+    // 회원 저장
     @Override
     public Member save(Member member) {
         member.setId(++sequence);
@@ -17,6 +20,7 @@ public class MemoryMemberRepository implements MemberRepository{
         return member;
     }
 
+    //회원 찾기
     @Override
     public Optional<Member> findById(Long id) {
         return Optional.ofNullable(store.get(id));

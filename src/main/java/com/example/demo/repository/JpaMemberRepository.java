@@ -7,6 +7,8 @@ import java.util.List;
 import java.util.Optional;
 
 public class JpaMemberRepository implements MemberRepository{
+
+    // EntityManager를 주입 , EntityManager 문법에 따라 메소드를 작성
     private final EntityManager em;
 
     public JpaMemberRepository(EntityManager em){
